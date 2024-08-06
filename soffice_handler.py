@@ -1,9 +1,9 @@
 import sys
 import configparser
 
-config = configparser.ConfigParser()
-config.read('config.ini')
-sys.path.append(config['default']['uno_path'])
+# config = configparser.ConfigParser()
+# config.read('config.ini')
+# sys.path.append(config['default']['uno_path'])
 
 import uno
 
@@ -55,8 +55,8 @@ class SofficeHandler:
             curr_para = cursor.get_string()
 
             if len(curr_para) > 0:
-                self._tvc.goto_range(cursor.component.getStart())
-                self._tvc.goto_range(cursor.component.getEnd(), True)
+                # self._tvc.goto_range(cursor.component.getStart())
+                # self._tvc.goto_range(cursor.component.getEnd(), True)
                 cursor.go_left(1)
 
                 if cursor.char_weight > 100 or cursor.para_adjust == 3:
