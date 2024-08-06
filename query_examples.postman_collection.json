@@ -1,0 +1,74 @@
+{
+	"info": {
+		"_postman_id": "b21938ea-0f98-40a3-b451-fc9e29442f05",
+		"name": "my",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19310066"
+	},
+	"item": [
+		{
+			"name": "{{service_url}}/api/open",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/beznosov_pb/Pictures/2/1.DOCX"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{service_url}}/api/open",
+					"host": [
+						"{{service_url}}"
+					],
+					"path": [
+						"api",
+						"open"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{service_url}}/api/search?query=Предмет договора",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{service_url}}/api/search?query=Предмет договора",
+					"host": [
+						"{{service_url}}"
+					],
+					"path": [
+						"api",
+						"search"
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "Предмет договора"
+						},
+						{
+							"key": null,
+							"value": "https://github.com/GaalDorn1k/innacurate_search.git",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
