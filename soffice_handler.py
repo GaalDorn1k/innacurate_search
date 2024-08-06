@@ -1,21 +1,24 @@
 import sys
+import configparser
 
-sys.path.append('/usr/lib/python3/dist-packages')
-sys.path.append('/usr/lib/libreoffice/program')
+config = configparser.ConfigParser()
+config.read('config.ini')
+sys.path.append(config['default']['uno_path'])
 
 import uno
-from ooodev.write import WriteDoc
+
 from ooodev.loader import Lo
-from com.sun.star.frame import XComponentLoader
-from ooodev.format.writer.direct.para.alignment import Alignment
 from typing import cast, List
+from ooodev.write import WriteDoc
 
 
 class SofficeHandler:
-    def __init__(self, doc: str, loader: XComponentLoader) -> None:
-        # loader = Lo.load_office(Lo.ConnectSocket())
-        fnm = cast(str, doc)
-        self._doc = WriteDoc.open_doc(fnm=fnm, loader=loader, visible=True)
+    def __init__(self) -> None:
+        self.loader = Lo.load_office(Lo.ConnectSocket())
+
+    def open_doc(self, doc_path: str) -> None:
+        fnm = cast(str, doc_path)
+        self._doc = WriteDoc.open_doc(fnm=fnm, loader=self.loader, visible=True)
         self._tvc = self._doc.get_view_cursor()
 
     def search(self, texts: List[str]) -> int:
@@ -43,12 +46,12 @@ class SofficeHandler:
 
     def get_paragraphs(self) -> dict:
         cursor = self._doc.get_cursor()
-        cursor.goto_start(False)  # go to start test; no selection
+        cursor.goto_start(False)
         paragraphs = {}
         head = ''
 
         while True:
-            cursor.goto_end_of_paragraph(True)  # select all of paragraph
+            cursor.goto_end_of_paragraph(True)
             curr_para = cursor.get_string()
 
             if len(curr_para) > 0:
@@ -64,7 +67,7 @@ class SofficeHandler:
                     if head:
                         paragraphs[head].append(curr_para)
 
-                cursor.go_right(1)            
+                cursor.go_right(1)
 
             if cursor.goto_next_paragraph() is False:
                 break

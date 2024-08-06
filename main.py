@@ -14,10 +14,12 @@ TRHESH = 0.8
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-f', '--file', type=str, required=True, help='path to document')
+    parser.add_argument('-f', '--file', type=str, help='path to document',
+                        default='/home/user0/projects/docs/8783432.DOCX')
     args = parser.parse_args()
 
-    office_handler = SofficeHandler(args.file)
+    office_handler = SofficeHandler()
+    office_handler.open_doc(args.file)
     chunks = office_handler.get_paragraphs()
     embeddings = HFEmbeddings(model_name='sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2')
     heads_index = FaissIdx(embeddings, 384)

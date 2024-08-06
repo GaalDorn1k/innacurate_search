@@ -1,8 +1,7 @@
-from langchain_community.embeddings import HuggingFaceEmbeddings
-from langchain_core.embeddings import Embeddings
+import torch
 import numpy as np
 import torch.nn.functional as F
-import torch
+from langchain_community.embeddings import HuggingFaceEmbeddings
 
 
 class HFEmbeddings:

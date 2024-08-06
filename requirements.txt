@@ -1,1 +1,7 @@
 ooo-dev-tools==0.47.7
+tqdm==4.65.0
+faiss-cpu==1.8.0.post1
+langchain==0.2.9
+langchain-community==0.2.7
+torch==2.1.2
+sentence-transformers==3.0.1

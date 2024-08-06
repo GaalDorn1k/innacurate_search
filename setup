@@ -5,5 +5,5 @@ apt install x11-apps -y
 apt install libreoffice -y
 apt install plocate -y
 uno_paths=($(locate dist-packages/uno.py))
-printf "uno_path = '${uno_paths[-1]}'" > $config_path
+printf "uno_path = ${uno_paths[-1]}" > $config_path
 pip install -r requirements.txt
