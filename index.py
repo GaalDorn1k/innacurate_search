@@ -18,4 +18,4 @@ class FaissIdx:
     def search_doc(self, query: str, k=1) -> dict:
         score, text = self.index.search(np.array(self.model.get_embeddings(query)), k)
         return {'text': self.doc_map[text[0][0]] if text[0][0] != -1 else '',
-                'score': score[0][0]}
+                'score': float(score[0][0])}
